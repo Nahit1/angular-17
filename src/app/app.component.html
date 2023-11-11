@@ -2,8 +2,8 @@
   <!-- <button (click)="getData()" mat-raised-button color="primary">
     Fetch Data
   </button> -->
-  <ng-container *ngIf="products$ | async">
-    <app-product [products]="products$"></app-product>
+  <ng-container #products>
+    <!-- <app-product [products]="productList"></app-product> -->
   </ng-container>
 </div>
 <ng-template #loading>
@@ -12,4 +12,8 @@
 
 <ng-template #placeholder>
   <app-placeholder></app-placeholder>
+</ng-template>
+
+<ng-template #error>
+  <h1>Error</h1>
 </ng-template>
