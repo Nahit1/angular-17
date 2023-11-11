@@ -2,14 +2,14 @@
   <!-- <button (click)="getData()" mat-raised-button color="primary">
     Fetch Data
   </button> -->
-
-  @defer (when products$ |async) {
-  <app-product [products]="products$"></app-product>
-  } @placeholder {
-  <app-placeholder></app-placeholder>
-  } @error {
-  <span>Error</span>
-  } @loading() {
-  <app-loading></app-loading>
-  }
+  <ng-container *ngIf="products$ | async">
+    <app-product [products]="products$"></app-product>
+  </ng-container>
 </div>
+<ng-template #loading>
+  <app-loading></app-loading>
+</ng-template>
+
+<ng-template #placeholder>
+  <app-placeholder></app-placeholder>
+</ng-template>
