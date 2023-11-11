@@ -3,8 +3,8 @@
     Fetch Data
   </button> -->
 
-  @defer (when products$ |async) {
-  <app-product [products]="products$"></app-product>
+  @defer (when productsList) {
+  <app-product [products]="productsList"></app-product>
   } @placeholder {
   <app-placeholder></app-placeholder>
   } @error {

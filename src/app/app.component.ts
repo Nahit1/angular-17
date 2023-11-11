@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product/product.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,13 +25,17 @@ import { LoadingComponent } from './loading/loading.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   httpClient = inject(HttpClient);
   productStatus = false;
 
-  products$ = this.httpClient
-    .get('https://fakestoreapi.com/products')
-    .pipe(shareReplay());
+  productsList: any;
+
+  ngOnInit(): void {
+    this.httpClient
+      .get('https://fakestoreapi.com/products')
+      .subscribe((x) => (this.productsList = x));
+  }
 
   // getProduct() {
   //   this.httpClient

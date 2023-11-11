@@ -12,6 +12,6 @@ export class ProductComponent implements OnInit {
   @Input() products: any;
   productList: any;
   ngOnInit(): void {
-    this.products.subscribe((x: any) => (this.productList = x));
+    //this.products.subscribe((x: any) => (this.productList = x));
   }
 }
