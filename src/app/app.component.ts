@@ -23,30 +23,14 @@ import { LoadingComponent } from './loading/loading.component';
     HttpClientModule,
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
   httpClient = inject(HttpClient);
-  productStatus = false;
-
   productsList: any;
 
   ngOnInit(): void {
     this.httpClient
       .get('https://fakestoreapi.com/products')
-      .subscribe((x) => (this.productsList = x));
-  }
-
-  // getProduct() {
-  //   this.httpClient
-  //     .get('https://fakestoreapi.com/products')
-  //     .subscribe((x: any) => {
-  //       this.products = x;
-  //       console.log(x);
-  //     });
-  // }
-
-  getData() {
-    this.productStatus = true;
+      .subscribe((res) => (this.productsList = res));
   }
 }
