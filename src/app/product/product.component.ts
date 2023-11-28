@@ -9,9 +9,12 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './product.component.html',
 })
 export class ProductComponent implements OnInit {
-  @Input() products: any;
-  productList: any;
+  httpClient = inject(HttpClient);
+  products: any;
+
   ngOnInit(): void {
-    //this.products.subscribe((x: any) => (this.productList = x));
+    this.httpClient
+      .get('https://fakestoreapi.com/products')
+      .subscribe((res) => (this.products = res));
   }
 }
