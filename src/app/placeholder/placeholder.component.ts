@@ -5,6 +5,10 @@ import { CommonModule } from '@angular/common';
   selector: 'app-placeholder',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './placeholder.component.html',
+  template: `<div
+    class="w-full h-screen border border-slate-700 rounded p-3 flex flex-col mt-2"
+  >
+    Product Area
+  </div>`,
 })
 export class PlaceholderComponent {}
