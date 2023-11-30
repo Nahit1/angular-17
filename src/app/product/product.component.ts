@@ -1,6 +1,5 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-product',
@@ -41,19 +40,6 @@ import { HttpClient } from '@angular/common/http';
     </div>
   </div> `,
 })
-export class ProductComponent implements OnInit {
-  httpClient = inject(HttpClient);
-  products: any;
-
-  ngOnInit(): void {
-    this.getProducts();
-  }
-
-  getProducts() {
-    setTimeout(() => {
-      this.httpClient
-        .get('https://fakestoreapi.com/products')
-        .subscribe((res) => (this.products = res));
-    }, 3000);
-  }
+export class ProductComponent {
+  @Input() products: any;
 }

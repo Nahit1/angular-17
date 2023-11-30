@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductComponent } from './product/product.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
 import { LoadingComponent } from './loading/loading.component';
 
@@ -18,7 +18,7 @@ import { LoadingComponent } from './loading/loading.component';
   template: `
     <div class="container mx-auto px-4 mt-5">
       @defer () {
-      <app-product></app-product>
+      <app-product [products]="products"></app-product>
       } @placeholder {
       <app-placeholder></app-placeholder>
       } @error {
@@ -29,4 +29,17 @@ import { LoadingComponent } from './loading/loading.component';
     </div>
   `,
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  httpClient = inject(HttpClient);
+  products: any;
+
+  ngOnInit(): void {
+    this.getProducts();
+  }
+
+  getProducts() {
+    this.httpClient
+      .get('https://fakestoreapi.com/products')
+      .subscribe((res) => (this.products = res));
+  }
+}
